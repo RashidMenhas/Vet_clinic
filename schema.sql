@@ -7,5 +7,8 @@ create database vet_clinic;
  escape_attempts int,
  neutered boolean,
  weight_kg decimal,
+ species varchar(44),
  primary key (id)
  );
+
+ALTER TABLE animals ADD column species varchar(44);
