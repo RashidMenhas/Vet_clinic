@@ -12,3 +12,21 @@ create database vet_clinic;
  );
 
 ALTER TABLE animals ADD column species varchar(44);
+
+
+ create table owners(
+    id int primary key GENERATED ALWAYS AS IDENTITY,
+ full_name varchar(44),
+ age int
+ );
+
+ create table species(
+id int primary key GENERATED ALWAYS AS IDENTITY,
+ name varchar(44)
+ );
+
+alter table animals drop column species;
+ALTER TABLE animals ADD column species_id int;
+alter table animalas add column owners_id int;
+alter table animals add constraint species_id foreign key (species_id) references species(id);
+alter table animals add constraint owners_id foreign key (owners_id) references owners(id);
