@@ -9,3 +9,38 @@
  select * from animals where name !='Gabumon';
  select * from animals where weight_kg >=10.4 and weight_kg <=17.3;
 
+begin;
+select * from animals;
+update animals set species= 'unspecified';
+select * from animals;
+rollback;
+select * from animals;
+
+ begin;
+ update animals set species= 'digimon' where name like '%mon';
+ update animals set species='pokemon' where species= '';
+ select * from animals;
+ commit;
+ select * from animals;
+
+ begin;
+ select * from animals;
+ delete from animals;
+ select * from animals;
+ rollback;
+ select * from animals;
+
+  begin;
+  delete from animals where date_of_birth > '01-01-2022';
+  savepoint first_savepoint;
+  update animals set weight_kg = weight_kg * (-1);
+  rollback to first_savepoint;
+  update animals set weight_kg = weight_kg * (-1) where weight_kg <0;
+  commit;
+
+  select count(name) from animals;
+  select  count(name) from animals where escape_attempts = 0;
+  select AVG(weight_kg) from animals;
+  select MAX(escape_attempts) from animals where neutered = true or neutered = false;
+  select max(weight_kg), min(weight_kg) from animals group by species;
+select AVG(escape_attempts) from animals where date_of_birth between '1990-01-01' and '2000-12-31' group by species;
