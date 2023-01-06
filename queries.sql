@@ -44,3 +44,12 @@ select * from animals;
   select MAX(escape_attempts) from animals where neutered = true or neutered = false;
   select max(weight_kg), min(weight_kg) from animals group by species;
 select AVG(escape_attempts) from animals where date_of_birth between '1990-01-01' and '2000-12-31' group by species;
+
+-- add these query for joining table with each other
+select name from animals join owners on animals.owners_id = owners.id where owners.full_name = 'Melody Pond';
+select * from animals join species on animals.species_id = species.id where species.name = 'Pokemon';
+select owners.full_name, animals.name from owners LEFT join animals on owners.id = animals.owner_id ORDER By owners.id;
+select species_id, COUNT(*) AS animals from animals GROUP By species_id;
+select * from species join owners on owners.full_name = 'Jennifer Orwell' where species.name = 'Digimon';
+select * from animals join owners on owners.full_name = 'Dean Winchester' where animals.escape_attempts=0;
+select owners.full_name, Ceil(COUNT(animals.id)) as number_of_animals  from owners LEFT join animals on owners.id = animals.owner_id GROUP BY owners.id ORDER BY number_of_animals DESC LIMIT 1;
