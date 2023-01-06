@@ -13,7 +13,7 @@ create database vet_clinic;
 
 ALTER TABLE animals ADD column species varchar(44);
 
-
+-- create two table species and owners
  create table owners(
     id int primary key GENERATED ALWAYS AS IDENTITY,
  full_name varchar(44),

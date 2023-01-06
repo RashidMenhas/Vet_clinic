@@ -45,7 +45,7 @@ select * from animals;
   select max(weight_kg), min(weight_kg) from animals group by species;
 select AVG(escape_attempts) from animals where date_of_birth between '1990-01-01' and '2000-12-31' group by species;
 
-
+-- add these query for joining table with each other
 select name from animals join owners on animals.owners_id = owners.id where owners.full_name = 'Melody Pond';
 select * from animals join species on animals.species_id = species.id where species.name = 'Pokemon';
 select owners.full_name, animals.name from owners LEFT join animals on owners.id = animals.owner_id ORDER By owners.id;
